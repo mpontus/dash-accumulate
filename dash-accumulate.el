@@ -32,6 +32,7 @@
 ;; function, it will determine applicable argument lists by accepting
 ;; them as only argument and returning non-nil.
 
+;;;###autoload
 (defun -accumulate (function &optional pred)
   (let (return) (funcall function
      (function (lambda (&rest args)
@@ -42,6 +43,7 @@
 ;;; Depending on the choice of primary function, one of the below can
 ;;; add (non-)anaphoric variant to them.
 
+;;;###autoload
 (defmacro --accumulate (form &optional pred)
   `(-accumulate (function (lambda (it) ,form)) ,pred))
 
