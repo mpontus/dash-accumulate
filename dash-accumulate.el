@@ -49,8 +49,8 @@
 ;;; tests and I spent a lot of time unsuccessfully trying to figure
 ;;; out why.
 
-(defun -accumulate (function &optional pred)
-  (--accumulate (funcall function it) pred))
+;; (defun -accumulate (function &optional pred)
+;;   (--accumulate (funcall function it) pred))
 
 ;; Collect arguments for `it' during execution of FORM. If PRED is a
 ;; function it is called with list of arguments as a single argument
@@ -58,15 +58,15 @@
 
 ;;; FIXME: TEST FAIL
 
-(defmacro --accumulate (form &optional pred)
-  (declare (debug (form lambda-form)))
-  (let ((r (make-symbol "result")))
-    `(let (,r) (funcall
-        (function (lambda (it) ,form))
-        (function (lambda (&rest args)
-          (when (or (not pred) (funcall pred args))
-            (!cons args ,r)))))
-       (nreverse ,r))))
+;; (defmacro --accumulate (form &optional pred)
+;;   (declare (debug (form lambda-form)))
+;;   (let ((r (make-symbol "result")))
+;;     `(let (,r) (funcall
+;;         (function (lambda (it) ,form))
+;;         (function (lambda (&rest args)
+;;           (when (or (not pred) (funcall pred args))
+;;             (!cons args ,r)))))
+;;        (nreverse ,r))))
 
 
 (provide 'dash-accumulate)
